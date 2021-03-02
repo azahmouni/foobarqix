@@ -44,6 +44,13 @@ public class FooBarQixPrinterDefaultTest {
 			
 			printer.print();
 			assertThat(outputStream.toString().trim(), equalTo("1\r\n2"));
-		}	
+		}
+		
+		@Test
+		void testPrintOneTwoThree() {
+			
+			printer.print();
+			assertThat(outputStream.toString().trim(), equalTo("1\r\n2\r\nFooFoo"));
+		}
 	}
 }
