@@ -38,28 +38,35 @@ public class FooBarQixPrinterDefaultTest {
 		void testPrintOne() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), startsWith("1"));
+			assertThat(outputStream.toString(), startsWith("1"));
 		}
 		
 		@Test
 		void testPrintOneTwo() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), startsWith("1\r\n2"));
+			assertThat(outputStream.toString(), startsWith("1\r\n2"));
 		}
 		
 		@Test
 		void testPrintOneTwoThree() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), equalTo("1\r\n2\r\nFooFoo"));
+			assertThat(outputStream.toString(), startsWith("1\r\n2\r\nFooFoo"));
 		}
 		
 		@Test
 		void testPrintFromOneToFour() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), equalTo("1\r\n2\r\nFooFoo\r\n4"));
+			assertThat(outputStream.toString(), startsWith("1\r\n2\r\nFooFoo\r\n4"));
+		}
+		
+		@Test
+		void testPrintFromOneTofive() {
+			
+			printer.print();
+			assertThat(outputStream.toString(), equalTo("1\r\n2\r\nFooFoo\r\n4\r\nBarBar"));
 		}
 		
 		@AfterEach
