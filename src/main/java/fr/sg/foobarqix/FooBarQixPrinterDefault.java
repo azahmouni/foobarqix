@@ -16,7 +16,7 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 		String strValue			= "";
 		boolean printTheNumber = true;
 		
-		for(int i = 1; i <= 29; i++) {
+		for(int i = 1; i <= 39; i++) {
 			
 			printTheNumber = true;
 			divisibleBy3 = i % 3 == 0;
@@ -42,18 +42,27 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 				
 				printTheNumber = false;
 				toPrint.append(Label.FOO.getValue());
+				if(strValue.lastIndexOf(Number.THREE.getValue()) != positionOf3) {
+					toPrint.append(Label.FOO.getValue());
+				}
 			}
 			
 			if(positionOf5 >= 0) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.BAR.getValue());
+				if(strValue.lastIndexOf(Number.FIVE.getValue()) != positionOf5) {
+					toPrint.append(Label.BAR.getValue());
+				}
 			}
 			
 			if(positionOf7 >= 0) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.QIX.getValue());
+				if(strValue.lastIndexOf(Number.SEVEN.getValue()) != positionOf7) {
+					toPrint.append(Label.QIX.getValue());
+				}
 			}
 
 			if(printTheNumber) {
