@@ -43,7 +43,7 @@ public class FooBarQixPrinterDefaultTest {
 		void testPrintOneTwo() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), equalTo("1\\r\\n2"));
+			assertThat(outputStream.toString().trim(), equalTo("1\r\n2"));
 		}	
 	}
 }

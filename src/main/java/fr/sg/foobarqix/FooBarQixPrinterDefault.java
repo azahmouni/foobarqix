@@ -6,5 +6,6 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 	public void print() {
 		
 		System.out.println("1");
+		System.out.println("2");
 	}
 }
