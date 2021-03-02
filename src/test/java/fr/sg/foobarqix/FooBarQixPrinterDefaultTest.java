@@ -73,7 +73,14 @@ public class FooBarQixPrinterDefaultTest {
 		void testPrintFromOneToSix() {
 			
 			printer.print();
-			assertThat(outputStream.toString(), equalTo("1\r\n2\r\nFooFoo\r\n4\r\nBarBar\r\nFoo"));
+			assertThat(outputStream.toString(), startsWith("1\r\n2\r\nFooFoo\r\n4\r\nBarBar\r\nFoo"));
+		}
+		
+		@Test
+		void testPrintFromOneToSeven() {
+			
+			printer.print();
+			assertThat(outputStream.toString(), equalTo("1\r\n2\r\nFooFoo\r\n4\r\nBarBar\r\nFoo\r\nQix"));
 		}
 		
 		@AfterEach
