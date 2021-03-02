@@ -17,7 +17,7 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 		String twoDigitsStrValue	= "";
 		boolean printTheNumber = true;
 		
-		for(int i = 1; i <= 99; i++) {
+		for(int i = 1; i <= 100; i++) {
 			
 			printTheNumber = true;
 			divisibleBy3 = i % 3 == 0;
