@@ -16,7 +16,7 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 		String strValue			= "";
 		boolean printTheNumber = true;
 		
-		for(int i = 1; i <= 7; i++) {
+		for(int i = 1; i <= 9; i++) {
 			
 			printTheNumber = true;
 			divisibleBy3 = i % 3 == 0;
