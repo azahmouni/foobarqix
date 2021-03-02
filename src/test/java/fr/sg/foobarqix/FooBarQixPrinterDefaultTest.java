@@ -1,7 +1,7 @@
 package fr.sg.foobarqix;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -36,7 +36,14 @@ public class FooBarQixPrinterDefaultTest {
 		void testPrintOne() {
 			
 			printer.print();
-			assertThat(outputStream.toString().trim(), equalTo("1"));
-		}		
+			assertThat(outputStream.toString().trim(), startsWith("1"));
+		}
+		
+		@Test
+		void testPrintOneTwo() {
+			
+			printer.print();
+			assertThat(outputStream.toString().trim(), equalTo("1\\r\\n2"));
+		}	
 	}
 }
