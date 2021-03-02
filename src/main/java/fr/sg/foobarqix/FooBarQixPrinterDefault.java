@@ -7,24 +7,27 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 
 		final String EOL = "\r\n";
 		
-		boolean divisibleBy3	= false;
-		boolean divisibleBy5	= false;
-		int positionOf3			= -1;
-		int positionOf5			= -1;
-		int positionOf7			= -1;
-		StringBuilder toPrint	= new StringBuilder();		
-		String strValue			= "";
+		boolean divisibleBy3		= false;
+		boolean divisibleBy5		= false;
+		boolean[] positionOf3;
+		boolean[] positionOf5;
+		boolean[] positionOf7;
+		StringBuilder toPrint		= new StringBuilder();
+		String strValue				= "";
+		String twoDigitsStrValue	= "";
 		boolean printTheNumber = true;
 		
-		for(int i = 1; i <= 49; i++) {
+		for(int i = 1; i <= 59; i++) {
 			
 			printTheNumber = true;
 			divisibleBy3 = i % 3 == 0;
 			divisibleBy5 = i % 5 == 0;
-			strValue = String.valueOf(i);
-			positionOf3 = strValue.indexOf(Number.THREE.getValue());
-			positionOf5 = strValue.indexOf(Number.FIVE.getValue());
-			positionOf7 = strValue.indexOf(Number.SEVEN.getValue());
+			strValue = String.valueOf(i);			
+			twoDigitsStrValue = strValue.length() == 1 ? "0" + strValue : strValue;
+			
+			positionOf3 = new boolean[] { Number.THREE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.THREE.getValue().equals(twoDigitsStrValue.substring(1)) };
+			positionOf5 = new boolean[] { Number.FIVE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.FIVE.getValue().equals(twoDigitsStrValue.substring(1)) };
+			positionOf7 = new boolean[] { Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(1)) };
 			
 			if(divisibleBy3) {
 				
@@ -38,36 +41,45 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 				toPrint.append(Label.BAR.getValue());
 			}
 			
-			if(positionOf3 >= 0) {
+			if(positionOf3[0]) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.FOO.getValue());
-				if(strValue.lastIndexOf(Number.THREE.getValue()) != positionOf3) {
-					toPrint.append(Label.FOO.getValue());
-				}
 			}
 			
-			if(positionOf5 >= 0) {
+			if(positionOf5[0]) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.BAR.getValue());
-				if(strValue.lastIndexOf(Number.FIVE.getValue()) != positionOf5) {
-					toPrint.append(Label.BAR.getValue());
-				}
 			}
 			
-			if(positionOf7 >= 0) {
+			if(positionOf7[0]) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.QIX.getValue());
-				if(strValue.lastIndexOf(Number.SEVEN.getValue()) != positionOf7) {
-					toPrint.append(Label.QIX.getValue());
-				}
+			}
+			
+			if(positionOf3[1]) {
+				
+				printTheNumber = false;
+				toPrint.append(Label.FOO.getValue());
+			}
+			
+			if(positionOf5[1]) {
+				
+				printTheNumber = false;
+				toPrint.append(Label.BAR.getValue());
+			}
+			
+			if(positionOf7[1]) {
+				
+				printTheNumber = false;
+				toPrint.append(Label.QIX.getValue());
 			}
 
 			if(printTheNumber) {
 				
-				toPrint.append(strValue);				
+				toPrint.append(strValue);
 			}
 			
 			toPrint.append(EOL);
