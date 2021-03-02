@@ -140,6 +140,20 @@ public class FooBarQixPrinterDefaultTest {
 														  + "BarBar\r\nFooBar\r\nBar\r\nBarFoo\r\nFooBar\r\nBarBarBar\r\nBar\r\nFooBarQix\r\nBar\r\nBar"	));
 		}
 		
+		@Test
+		void testPrintFromOneToSeventyNine() {
+			
+			printer.print();
+			assertThat(outputStream.toString(), equalTo(	"1\r\n2\r\nFooFoo\r\n4\r\nBarBar\r\nFoo\r\nQix\r\n8\r\nFoo\r\n"
+														  + "Bar\r\n11\r\nFoo\r\nFoo\r\n14\r\nFooBarBar\r\n16\r\nQix\r\nFoo\r\n19\r\n"
+														  + "Bar\r\nFoo\r\n22\r\nFoo\r\nFoo\r\nBarBar\r\n26\r\nFooQix\r\n28\r\n29\r\n"
+														  + "FooBarFoo\r\nFoo\r\nFoo\r\nFooFooFoo\r\nFoo\r\nBarFooBar\r\nFooFoo\r\nFooQix\r\nFoo\r\nFooFoo\r\n"
+														  + "Bar\r\n41\r\nFoo\r\nFoo\r\n44\r\nFooBarBar\r\n46\r\nQix\r\nFoo\r\n49\r\n"
+														  + "BarBar\r\nFooBar\r\nBar\r\nBarFoo\r\nFooBar\r\nBarBarBar\r\nBar\r\nFooBarQix\r\nBar\r\nBar\r\n"
+														  + "FooBar\r\n61\r\n62\r\nFooFoo\r\n64\r\nBarBar\r\nFoo\r\nQix\r\n68\r\nFoo\r\n"
+														  + "BarQix\r\nQix\r\nFooQix\r\nQixFoo\r\nQix\r\nFooBarQixBar\r\nQix\r\nQixQix\r\nFooQix\r\nQix"	));
+		}
+		
 		@AfterEach
 		void tearDown() {
 			
