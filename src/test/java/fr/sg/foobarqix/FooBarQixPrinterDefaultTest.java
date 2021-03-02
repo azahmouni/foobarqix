@@ -1,12 +1,14 @@
 package fr.sg.foobarqix;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,6 +53,13 @@ public class FooBarQixPrinterDefaultTest {
 			
 			printer.print();
 			assertThat(outputStream.toString().trim(), equalTo("1\r\n2\r\nFooFoo"));
+		}
+		
+		@AfterEach
+		void tearDown() {
+			
+			System.out.close();
+			System.setOut(standardOut);			
 		}
 	}
 }
