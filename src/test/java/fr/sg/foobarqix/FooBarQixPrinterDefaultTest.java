@@ -1,0 +1,42 @@
+package fr.sg.foobarqix;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class FooBarQixPrinterDefaultTest {
+
+	static class TestPrint {
+		
+		private static FooBarQixPrinter printer;
+		private PrintStream standardOut = System.out;
+		private OutputStream outputStream;
+		
+		@BeforeAll
+		static void init() {
+			
+			printer = new FooBarQixPrinterDefault();
+		}
+		
+		@BeforeEach
+		void setup() {
+			
+			outputStream = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outputStream));
+		}
+		
+		@Test
+		void testPrintOne() {
+			
+			printer.print();
+			assertThat(outputStream.toString().trim(), equalTo("1"));
+		}		
+	}
+}
