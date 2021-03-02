@@ -2,7 +2,7 @@ package fr.sg.foobarqix;
 
 public enum Number {
 	
-	THREE("3");
+	THREE("3"), FIVE("5");
 	
 	private String value;
 	

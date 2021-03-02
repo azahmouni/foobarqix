@@ -8,17 +8,21 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 		final String EOL = "\r\n";
 		
 		boolean divisibleBy3	= false;
+		boolean divisibleBy5	= false;
 		int positionOf3			= -1;
+		int positionOf5			= -1;
 		StringBuilder toPrint	= new StringBuilder();		
 		String strValue			= "";
 		boolean printTheNumber = true;
 		
-		for(int i = 1; i <= 4; i++) {
+		for(int i = 1; i <= 5; i++) {
 			
 			printTheNumber = true;
 			divisibleBy3 = i % 3 == 0;
+			divisibleBy5 = i % 5 == 0;
 			strValue = String.valueOf(i);
 			positionOf3 = strValue.indexOf(Number.THREE.getValue());
+			positionOf5 = strValue.indexOf(Number.FIVE.getValue());
 			
 			if(divisibleBy3) {
 				
@@ -26,13 +30,26 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 				toPrint.append(Label.FOO.getValue());
 			}
 			
+			if(divisibleBy5) {
+				
+				printTheNumber = false;
+				toPrint.append(Label.BAR.getValue());
+			}
+			
 			if(positionOf3 >= 0) {
 				
 				printTheNumber = false;
 				toPrint.append(Label.FOO.getValue());
-			}			
+			}
+			
+			if(positionOf5 >= 0) {
+				
+				printTheNumber = false;
+				toPrint.append(Label.BAR.getValue());
+			}
 
 			if(printTheNumber) {
+				
 				toPrint.append(strValue);				
 			}
 			
