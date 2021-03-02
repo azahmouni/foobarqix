@@ -2,7 +2,7 @@ package fr.sg.foobarqix;
 
 public enum Label {
 
-	FOO("Foo"), BAR("Bar");
+	FOO("Foo"), BAR("Bar"), QIX("Qix");
 	
 	private String value;
 	
