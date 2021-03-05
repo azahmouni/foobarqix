@@ -6,80 +6,48 @@ public class FooBarQixPrinterDefault implements FooBarQixPrinter {
 	public void print() {
 
 		final String EOL = "\r\n";
-		
-		boolean divisibleBy3		= false;
-		boolean divisibleBy5		= false;
-		boolean[] positionOf3;
-		boolean[] positionOf5;
-		boolean[] positionOf7;
 		StringBuilder toPrint		= new StringBuilder();
-		String strValue				= "";
-		String twoDigitsStrValue	= "";
-		boolean printTheNumber = true;
 		
 		for(int i = 1; i <= 100; i++) {
 			
-			printTheNumber = true;
-			divisibleBy3 = i % 3 == 0;
-			divisibleBy5 = i % 5 == 0;
-			strValue = String.valueOf(i);			
-			twoDigitsStrValue = strValue.length() == 1 ? "0" + strValue : strValue;
+			boolean divisibleBy3 = i % 3 == 0;
+			boolean divisibleBy5 = i % 5 == 0;
+			String strValue = String.valueOf(i);
+			StringBuilder numberOutput = new StringBuilder(); 
+			String twoDigitsStrValue = strValue.length() == 1 ? "0" + strValue : strValue;
 			
-			positionOf3 = new boolean[] { Number.THREE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.THREE.getValue().equals(twoDigitsStrValue.substring(1)) };
-			positionOf5 = new boolean[] { Number.FIVE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.FIVE.getValue().equals(twoDigitsStrValue.substring(1)) };
-			positionOf7 = new boolean[] { Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(1)) };
+			boolean[] positionOf3 = new boolean[] { Number.THREE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.THREE.getValue().equals(twoDigitsStrValue.substring(1)) };
+			boolean[] positionOf5 = new boolean[] { Number.FIVE.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.FIVE.getValue().equals(twoDigitsStrValue.substring(1)) };
+			boolean[] positionOf7 = new boolean[] { Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(0, 1)), Number.SEVEN.getValue().equals(twoDigitsStrValue.substring(1)) };
 			
 			if(divisibleBy3) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.FOO.getValue());
+				numberOutput.append(Label.FOO.getValue());
 			}
 			
 			if(divisibleBy5) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.BAR.getValue());
+				numberOutput.append(Label.BAR.getValue());
 			}
 			
-			if(positionOf3[0]) {
+			for(int j = 0; j < 2; j++) {
+
+				if(positionOf3[j]) {
+					numberOutput.append(Label.FOO.getValue());
+				}
 				
-				printTheNumber = false;
-				toPrint.append(Label.FOO.getValue());
-			}
-			
-			if(positionOf5[0]) {
+				if(positionOf5[j]) {
+					numberOutput.append(Label.BAR.getValue());
+				}
 				
-				printTheNumber = false;
-				toPrint.append(Label.BAR.getValue());
-			}
-			
-			if(positionOf7[0]) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.QIX.getValue());
-			}
-			
-			if(positionOf3[1]) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.FOO.getValue());
-			}
-			
-			if(positionOf5[1]) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.BAR.getValue());
-			}
-			
-			if(positionOf7[1]) {
-				
-				printTheNumber = false;
-				toPrint.append(Label.QIX.getValue());
+				if(positionOf7[j]) {					
+					numberOutput.append(Label.QIX.getValue());
+				}
 			}
 
-			if(printTheNumber) {
-				
+			if(numberOutput.toString().isEmpty()) {				
 				toPrint.append(strValue);
+			}
+			else {
+				toPrint.append(numberOutput);
 			}
 			
 			toPrint.append(EOL);
